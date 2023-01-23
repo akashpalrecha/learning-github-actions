@@ -11,16 +11,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: create folder
-        run: mkdir docs
-
       - name: create a file
-        run: cd docs && echo "${{ github.run_id }} -- ${{ github.run_number }}" >> a_file.txt
+        run: mkdir mkdocs && cd mkdocs && echo "${{ github.run_id }} -- ${{ github.run_number }}" >> a_file.txt
 
       - name: Push
-        uses: nicholasgriffintn/github-branch-deployment-action@0.0.1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: docs
-          FOLDER: docs
-          MESSAGE: 'Build: ({sha}) {msg}'
+        - uses: casperdcl/push-dir@v1
+        with:
+          message: update static site
+          branch: docs
+          dir: mkdocs
