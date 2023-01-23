@@ -15,7 +15,7 @@ jobs:
         run: mkdir docs
 
       - name: create a file
-        run: cd docs && echo "${{ GITHUB_RUN_ID }} -- ${{ GITHUB_RUN_NUMBER }}" >> a_file.txt
+        run: cd docs && echo "${{ github.run_id }} -- ${{ github.run_number }}" >> a_file.txt
 
       - name: Push
         uses: nicholasgriffintn/github-branch-deployment-action@0.0.1
